@@ -7,11 +7,24 @@ const run = async () => {
 
   const item = await Item.create({
     name: 'Clean up',
-    createdBy: mongoose.Type.ObjectId,
-    list: mongoose.Type.ObjectId
+    createdBy: mongoose.Types.ObjectId(),
+    list: mongoose.Types.ObjectId()
   })
 
-  console.log(await Item.findById(item._id).exec())
+  // console.log(await Item.findById(item._id).exec())
+  // console.log(item)
+
+  // const updated = await Item.findByIdAndUpdate(
+  //   item._id,
+  //   { name: 'eat' },
+  //   { new: true }
+  // ).exec()
+  //
+  // console.log(updated)
+
+  const removed = await Item.findByIdAndRemove(item._id).exec()
+
+  console.log(removed)
 }
 
 run()
